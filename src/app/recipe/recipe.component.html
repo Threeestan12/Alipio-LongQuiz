@@ -1,0 +1,40 @@
+<div class="container mt-4" style="background-image: url('https://t3.ftcdn.net/jpg/06/37/16/64/360_F_637166455_RZOHg6K3M6noLPKQmOHH5ZI70zXEyDaq.jpg'); background-size: cover;">
+  <h2 class="text-center mb-4" style="color: #fff; font-family: 'Arial', sans-serif; font-size: 2.5rem;">Alipio's Fine Dining</h2>
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="card mb-4" style="background-color: rgb(34, 27, 138); border: 2px solid rgb(30, 59, 155);">
+              <div class="card-body">
+                  <h3 class="card-title text-center" style="color: rgb(255, 255, 255); font-family: 'Arial', sans-serif; font-size: 1.5rem;">Add New Recipe</h3>
+                  <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Recipe Name" [(ngModel)]="newRecipeName" style="border: 2px solid rgb(35, 92, 158); border-right: none; border-radius: 0; color: #fff;" />
+                      <div class="input-group-append">
+                          <button class="btn btn-primary" type="button" (click)="addRecipe()">Add</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div *ngFor="let recipe of recipes; let i = index">
+              <div class="card mb-3" style="background-color: rgb(24, 35, 185); border: 2px solid rgb(27, 70, 189);">
+                  <div class="card-body">
+                      <h3 class="card-title" style="color: rgb(55, 21, 182); font-family: 'Arial', sans-serif; font-size: 1.5rem;">{{ recipe.name }}</h3>
+                      <ul class="list-group">
+                          <li *ngFor="let ingredient of recipe.ingredients; let j = index" class="list-group-item" style="background-color: #202294; border: 2px solid rgb(55, 32, 156); color: #fff;">
+                              {{ ingredient }}
+                              <button type="button" class="btn btn-secondary float-right" (click)="deleteIngredient(recipe, j)">Delete</button>
+                          </li>
+                      </ul>
+                      <div class="input-group mt-3">
+                          <input type="text" class="form-control" placeholder="Add Ingredient" [(ngModel)]="newIngredient" style="border: 2px solid rgb(35, 71, 170); border-right: none; border-radius: 0; color: #fff;" />
+                          <div class="input-group-append">
+                              <button type="button" class="btn btn-primary" (click)="addIngredient(recipe)">Add</button>
+                          </div>
+                      </div>
+                      <button type="button" class="btn btn-secondary mt-2" (click)="clearIngredients(recipe)">Clear </button>
+                      <button type="button" class="btn btn-primary float-right" (click)="deleteRecipe(i)">Remove Recipe</button>
+                  </div>
+              </div>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="clearRecipes()">Clear All</button>
+      </div>
+  </div>
+</div>
